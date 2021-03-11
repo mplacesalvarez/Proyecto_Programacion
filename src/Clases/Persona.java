@@ -1,21 +1,21 @@
-package Main;
+package Clases;
 
 public class Persona {
 
-    private int edad, num_vac_inyect=0, vac_quedan;
-    private char riesgo;
+    private int edad, num_vac_inyect = 0, vac_quedan;
+    private String riesgo;
     private String nombre, apellidos, dni;
 
 
     public Persona() {
     }
 
-    public Persona(String nombre, String apellidos,String dni,int edad,char riesgo) {
-      this.nombre=nombre;
-      this.apellidos=apellidos;
-        this.dni=dni;
-        this.edad=edad;
-        this.riesgo=riesgo;
+    public Persona(String nombre, String apellidos, String dni, int edad, String riesgo) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.edad = edad;
+        this.riesgo = riesgo;
     }
 
     public int getEdad() {
@@ -58,7 +58,7 @@ public class Persona {
         this.vac_quedan = vac_quedan;
     }
 
-    public void setRiesgo(char riesgo) {
+    public void setRiesgo(String riesgo) {
         this.riesgo = riesgo;
     }
 
@@ -73,8 +73,12 @@ public class Persona {
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+
+    public String toString() {
+
+        return "Nombre= " + getNombre() + "\tApellidos= " + getApellidos() + "\tDNI= " + getDni() + "\tEdad= " + getEdad() + "\tRiesgo= " + getRiesgo() + "\tNúmero de vacunas inyectadas= " + getNum_vac_inyect();
+
+    }
 }
-
-
-
 
