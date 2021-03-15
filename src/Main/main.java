@@ -7,7 +7,7 @@ public class main {
         do {
             obx.menu();
         }
-        while (obx.getOpcionmenu() != 6);
+        while (obx.getOpcionmenu() != 7);
 
 
     }

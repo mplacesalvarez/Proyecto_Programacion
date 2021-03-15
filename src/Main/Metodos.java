@@ -17,23 +17,27 @@ public class Metodos {
 
     public void menu() {
         try {
-            opcionmenu = Integer.parseInt(JOptionPane.showInputDialog("VACUNACIÓN COVID-19 EN ESPAÑA:\n1) Añadir persona.\n2) Listado de personas.\n3) Buscar persona.\n4) Información vacunas.\n5) Realizar cambios.\n6) Salir."));
+            opcionmenu = Integer.parseInt(JOptionPane.showInputDialog("VACUNACIÓN COVID-19 EN ESPAÑA:\n1) Añadir persona.\n2) Añadir vacuna.\n3) Listado de personas.\n4) Buscar persona.\n5) Información vacunas.\n6) Realizar cambios.\n7) Salir."));
             switch (opcionmenu) {
                 case 1:
-                    engadir();
+                    añadirpersona();
                     break;
                 case 2:
-                    Listado();
+                    añadirvacuna();
                     break;
                 case 3:
-                    buscar();
+                    Listado();
                     break;
                 case 4:
-                    informacion();
+                    buscar();
                     break;
                 case 5:
-                    cambiar();
+                    informacion();
                     break;
+                case 6:
+                    editar();
+                    break;
+
             }
 
 
@@ -42,7 +46,7 @@ public class Metodos {
     }
 
 
-    public void engadir() {
+    public void añadirpersona() {
 
         setNombre(JOptionPane.showInputDialog("Nombre: "));
         setApellidos(JOptionPane.showInputDialog("Apellidos: "));
@@ -52,6 +56,18 @@ public class Metodos {
         Persona obx = new Persona(nombre, apellidos, dni, edad, riesgo);
 
         listapersonas.add(obx);
+
+    }
+
+
+    public void añadirvacuna() {
+
+        Vacuna obx = new Vacuna();
+        obx.setNombre(JOptionPane.showInputDialog("Nombre:"));
+        obx.setDisponibles(Integer.parseInt(JOptionPane.showInputDialog("Número de dosis disponibles:")));
+        obx.setNum_dosis(Integer.parseInt(JOptionPane.showInputDialog("Número de dosis necesarias: ")));
+
+        listavacunas.add(obx);
 
     }
 
@@ -70,9 +86,9 @@ public class Metodos {
 
 
     public void buscar() {if(listapersonas.isEmpty()){System.out.println("**** RESULTADO DE LA BUSQUEDA ****");System.out.println("No hay personas en la lista.");}else{
-        String option = JOptionPane.showInputDialog("Elija un criterio de busqueda: \n- Nombre\n- Apellidos\n- DNI");
-        switch (option.toLowerCase()) {
-            case "nombre":
+        int option = Integer.parseInt(JOptionPane.showInputDialog("Elija un criterio de busqueda: \n1) Nombre.\n2) Apellidos.\n3) DNI."));
+        switch (option) {
+            case 1:
                 String nombre = JOptionPane.showInputDialog("Nombre: ");
                 System.out.println("**** RESULTADO DE LA BUSQUEDA ****");
                 for (int i = 0; i < listapersonas.size(); i++) {
@@ -84,7 +100,7 @@ public class Metodos {
                 }
                 break;
 
-            case "apellidos":
+            case 2:
                 String apellidos = JOptionPane.showInputDialog("Apellidos: ");
                 System.out.println("**** RESULTADO DE LA BUSQUEDA ****");
 
@@ -92,49 +108,115 @@ public class Metodos {
                     if (listapersonas.get(i).getApellidos().equalsIgnoreCase(apellidos)) {
 
 
-                    System.out.println(listapersonas.get(i).toString()); }else{System.out.println("No hay personas en la lista con ese nombre.");}
-
+                    System.out.println(listapersonas.get(i).toString()); }else{System.out.println("No hay personas en la lista con ese apellido.");}
                 }
                 break;
 
-            case "dni":
+            case 3:
                 String dni = JOptionPane.showInputDialog("DNI: ");
                 System.out.println("**** RESULTADO DE LA BUSQUEDA ****");
                 for (int i = 0; i < listapersonas.size(); i++) {
                     if (listapersonas.get(i).getDni().equalsIgnoreCase(dni)){
 
                     System.out.println(listapersonas.get(i).toString());}
-               else{System.out.println("No hay personas en la lista con ese nombre.");}
+               else{System.out.println("No hay personas en la lista con ese DNI.");}
                 }
                 break;
 
         }}
     }
+public void primerasvacunas(){
+    Vacuna obx1 = new Vacuna("Pfizer", 2, 100000, 20000);
+    Vacuna obx2 = new Vacuna("Moderna", 2, 100000, 10000);
+    Vacuna obx3 = new Vacuna("AstraZeneca/Oxford", 2, 100000, 50000);
+    listavacunas.add(obx1);
+    listavacunas.add(obx2);
+    listavacunas.add(obx3);}
+
 
     public void informacion() {
-        Vacuna obx1 = new Vacuna("Pfizer", 2, 100000, 20000);
-        Vacuna obx2 = new Vacuna("Moderna", 2, 100000, 10000);
-        Vacuna obx3 = new Vacuna("AstraZeneca/Oxford", 2, 100000, 50000);
-        listavacunas.add(obx1);
-        listavacunas.add(obx2);
-        listavacunas.add(obx3);
-
 
         System.out.println("**** VACUNAS DISPONIBLES EN ESPAÑA ****");
         for (int i = 0; i < listavacunas.size(); i++) {
             System.out.println(listavacunas.get(i).toString());
         }
-
+        if(listavacunas.isEmpty()){System.out.println("No hay vacunas en la lista.");}
 
     }
 
-    public void cambiar() {
-        String option = JOptionPane.showInputDialog("¿Qué quiere cambiar?\n- Personas\n- Vacunas");
-        switch (option.toLowerCase()) {
-            case "personas":
-                String option1 = JOptionPane.showInputDialog("¿Qué quiere cambiar?\n- Personas\n- Vacunas"); break;
-            case "vacunas":
-                String option2 = JOptionPane.showInputDialog("¿Qué quiere cambiar?\n- Nombre\n- Número de dosis\n- Vacunas disponibles\n- Vacunas administradas"); break;
+    public void editar() {
+        int option = Integer.parseInt(JOptionPane.showInputDialog("1) Editar personas\n2) Editar vacunas"));
+        switch (option) {
+            case 1:String option1 = JOptionPane.showInputDialog("Escriba el DNI de la persona que quiere editar:");
+                for (int i = 0; i < listapersonas.size(); i++) {
+                    if (listapersonas.get(i).getDni().equalsIgnoreCase(option1)){
+
+                        int option2 = Integer.parseInt(JOptionPane.showInputDialog("1) Cambiar nombre.\n2) Cambiar apellidos.\n3) Cambiar DNI.\n4) Cambiar edad.\n5) Cambiar riesgo.\n6) Cambiar número de vacunas inyectadas."));
+                        switch(option2){
+
+                            case 1:listapersonas.get(i).setNombre(JOptionPane.showInputDialog("Nuevo nombre:"));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                            System.out.println(listapersonas.get(i).toString());
+                            break;
+
+                            case 2:listapersonas.get(i).setApellidos(JOptionPane.showInputDialog("Nuevos apellidos:"));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                System.out.println(listapersonas.get(i).toString());
+                            break;
+                            case 3:listapersonas.get(i).setDni(JOptionPane.showInputDialog("Nuevo DNI:"));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                System.out.println(listapersonas.get(i).toString());
+                            break;
+                            case 4:listapersonas.get(i).setEdad(Integer.parseInt(JOptionPane.showInputDialog("Nueva edad:")));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                System.out.println(listapersonas.get(i).toString());
+                            break;
+                            case 5:listapersonas.get(i).setRiesgo(JOptionPane.showInputDialog("Nuevo riesgo:"));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                System.out.println(listapersonas.get(i).toString());
+                            break;
+                            case 6:listapersonas.get(i).setNum_vac_inyect(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de vacunas inyectadas:")));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                System.out.println(listapersonas.get(i).toString());
+                            break;
+                        }
+                    }
+                    else{System.out.println("No hay personas en la lista con ese DNI.");break;}
+                }break;
+
+
+                case 2:String option3 = JOptionPane.showInputDialog("Escriba el nombre de la vacuna que quiere editar:");
+                for (int i = 0; i < listavacunas.size(); i++) {
+                    if (listavacunas.get(i).getNombre().equalsIgnoreCase(option3)){
+
+                        int option2 = Integer.parseInt(JOptionPane.showInputDialog("1) Cambiar nombre.\n2) Cambiar número de dosis disponibles.\n3) Cambiar número de dosis necesarias."));
+                        switch(option2){
+
+                            case 1:listavacunas.get(i).setNombre(JOptionPane.showInputDialog("Nuevo nombre:"));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                System.out.println(listavacunas.get(i).toString());
+                                break;
+
+                            case 2:listavacunas.get(i).setDisponibles(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de dosis disponibles:")));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                System.out.println(listavacunas.get(i).toString());
+                                break;
+                            case 3:listavacunas.get(i).setNum_dosis(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de dosis necesarias:")));
+                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                System.out.println(listavacunas.get(i).toString());
+                                break;
+
+                        }
+
+                    }
+                    else{System.out.println("No hay vacunas en la lista con ese nombre.");break;}
+                }
+
+
+
+
+
+                ; break;
 
 
         }
