@@ -1,5 +1,5 @@
 package Main;
-
+import metodos.metodos_print;
 import Clases.Persona;
 import Clases.Vacuna;
 
@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 
 public class Metodos {
-    ArrayList<Persona> listapersonas = new ArrayList<Persona>();
+    metodos_print metobx=new metodos_print();
+    ArrayList<Persona>listapersonas = new ArrayList<Persona>();
     ArrayList<Vacuna> listavacunas = new ArrayList<Vacuna>();
     private int edad, num_vac_inyect = 0, vac_quedan;
     private String riesgo;
@@ -25,7 +26,7 @@ public class Metodos {
      */
     public void menu() {
         try {
-            opcionmenu = Integer.parseInt(JOptionPane.showInputDialog("VACUNACIÓN COVID-19 EN ESPAÑA:\n1) Añadir persona.\n2) Añadir vacuna.\n3) Listado de personas.\n4) Buscar persona.\n5) Información vacunas.\n6) Realizar cambios.\n7) Salir."));
+            opcionmenu = Integer.parseInt(JOptionPane.showInputDialog(metobx.mensaje()));
             switch (opcionmenu) {
                 case 1:
                     añadirpersona();
@@ -65,10 +66,6 @@ public class Metodos {
         setRiesgo(JOptionPane.showInputDialog("¿Es persona de riesgo (s/n)?: "));
         Persona obx = new Persona(nombre, apellidos, dni, edad, riesgo);
 
-        int cont=0;
-
-        for(int i=0; i<listapersonas.size(); i++){if(listapersonas.get(i).getDni().equalsIgnoreCase(listapersonas.get(cont+1).getDni())){System.out.println("Hay una persona en la lista con el mismo DNI.");}break;}
-
         listapersonas.add(obx);
 
 
@@ -98,7 +95,7 @@ public class Metodos {
             System.out.println(listapersonas.get(i).toString());
         }
         if (listapersonas.isEmpty()) {
-            System.out.println("No hay personas en la lista.");
+            metobx.mensaje2();
         }
 
     }//Cierre del método
@@ -106,41 +103,41 @@ public class Metodos {
     /**
      * Método que visualiza a una personas determinada
      */
-    public void buscar() {if(listapersonas.isEmpty()){System.out.println("**** RESULTADO DE LA BUSQUEDA ****");System.out.println("No hay personas en la lista.");}else{
+    public void buscar() {if(listapersonas.isEmpty()){metobx.mensaje3();metobx.mensaje2();}else{
         int option = Integer.parseInt(JOptionPane.showInputDialog("Elija un criterio de busqueda: \n1) Nombre.\n2) Apellidos.\n3) DNI."));
         switch (option) {
             case 1:
                 String nombre = JOptionPane.showInputDialog("Nombre: ");
-                System.out.println("**** RESULTADO DE LA BUSQUEDA ****");
+                metobx.mensaje3();
                 for (int i = 0; i < listapersonas.size(); i++) {
                     if (listapersonas.get(i).getNombre().equalsIgnoreCase(nombre)){
 
                         System.out.println(listapersonas.get(i).toString());}
-                    else{System.out.println("No hay personas en la lista con ese nombre.");}
+                    else{metobx.mensaje4();}
 
                 }
                 break;
 
             case 2:
                 String apellidos = JOptionPane.showInputDialog("Apellidos: ");
-                System.out.println("**** RESULTADO DE LA BUSQUEDA ****");
+                metobx.mensaje3();
 
                 for (int i = 0; i < listapersonas.size(); i++) {
                     if (listapersonas.get(i).getApellidos().equalsIgnoreCase(apellidos)) {
 
 
-                        System.out.println(listapersonas.get(i).toString()); }else{System.out.println("No hay personas en la lista con ese apellido.");}
+                        System.out.println(listapersonas.get(i).toString()); }else{metobx.mensaje5();}
                 }
                 break;
 
             case 3:
                 String dni = JOptionPane.showInputDialog("DNI: ");
-                System.out.println("**** RESULTADO DE LA BUSQUEDA ****");
+                metobx.mensaje3();
                 for (int i = 0; i < listapersonas.size(); i++) {
                     if (listapersonas.get(i).getDni().equalsIgnoreCase(dni)){
 
                         System.out.println(listapersonas.get(i).toString());}
-                    else{System.out.println("No hay personas en la lista con ese DNI.");}
+                    else{metobx.mensaje6();}
                 }
                 break;
 
@@ -186,33 +183,33 @@ public class Metodos {
                         switch(option2){
 
                             case 1:listapersonas.get(i).setNombre(JOptionPane.showInputDialog("Nuevo nombre:"));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listapersonas.get(i).toString());
                                 break;
 
                             case 2:listapersonas.get(i).setApellidos(JOptionPane.showInputDialog("Nuevos apellidos:"));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listapersonas.get(i).toString());
                                 break;
                             case 3:listapersonas.get(i).setDni(JOptionPane.showInputDialog("Nuevo DNI:"));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listapersonas.get(i).toString());
                                 break;
                             case 4:listapersonas.get(i).setEdad(Integer.parseInt(JOptionPane.showInputDialog("Nueva edad:")));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listapersonas.get(i).toString());
                                 break;
                             case 5:listapersonas.get(i).setRiesgo(JOptionPane.showInputDialog("Nuevo riesgo:"));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listapersonas.get(i).toString());
                                 break;
                             case 6:listapersonas.get(i).setNum_vac_inyect(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de vacunas inyectadas:")));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listapersonas.get(i).toString());
                                 break;
                         }
                     }
-                    else{System.out.println("No hay personas en la lista con ese DNI.");break;}
+                    else{metobx.mensaje6();break;}
                 }break;
 
 
@@ -224,16 +221,16 @@ public class Metodos {
                         switch(option2){
 
                             case 1:listavacunas.get(i).setNombre(JOptionPane.showInputDialog("Nuevo nombre:"));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listavacunas.get(i).toString());
                                 break;
 
                             case 2:listavacunas.get(i).setDisponibles(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de dosis disponibles:")));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listavacunas.get(i).toString());
                                 break;
                             case 3:listavacunas.get(i).setNum_dosis(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de dosis necesarias:")));
-                                System.out.println("**** CAMBIOS REALIZADOS ****");
+                                metobx.mensaje1();
                                 System.out.println(listavacunas.get(i).toString());
                                 break;
 
