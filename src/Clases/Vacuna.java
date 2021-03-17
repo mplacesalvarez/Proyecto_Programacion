@@ -1,5 +1,15 @@
 package Clases;
 
+/**
+ * Esta clase se utiliza para crear una vacuna con los atributos nombre;
+ * número de dosis necesarias, número total de vacunas disponibles y  número de vacunas administradas
+ *
+ * @author Manuel Places Alvarez
+ */
+
+
+
+
 public class Vacuna {
     private String nombre;
     private int num_dosis;

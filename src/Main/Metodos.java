@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  * Esta clase contiene los métodos que constituyen el menú de la aplicación.
+ * @author Manuel Places Alvarez
  */
 
 
@@ -64,7 +65,11 @@ public class Metodos {
         setDni(JOptionPane.showInputDialog("DNI: "));
         setEdad(Integer.parseInt(JOptionPane.showInputDialog("Edad: ")));
         setRiesgo(JOptionPane.showInputDialog("¿Es persona de riesgo (s/n)?: "));
-        Persona obx = new Persona(nombre, apellidos, dni, edad, riesgo);
+        int numero = (int)(Math.random()*listavacunas.size());
+        String nombre_vac="No hay vacunas";
+
+        try{nombre_vac=listavacunas.get(numero).getNombre();}catch(IndexOutOfBoundsException ex){}
+        Persona obx = new Persona(nombre, apellidos, dni, edad, riesgo,nombre_vac);
 
         listapersonas.add(obx);
 
