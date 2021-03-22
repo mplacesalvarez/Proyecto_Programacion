@@ -8,7 +8,6 @@ public class Persona {
      * @author Manuel Places Alvarez
      */
 
-
     private int edad, num_vac_inyect = 0, vac_quedan;
     private String riesgo;
     private String nombre, apellidos, dni;
