@@ -93,7 +93,7 @@ public class Persona {
 
     public String toString() {
 
-        return "Nombre= " + getNombre() + "\tApellidos= " + getApellidos() + "\tDNI= " + getDni() + "\tEdad= " + getEdad() + "\tRiesgo= " + getRiesgo() +"\tVacuna: "+getNombrevac()+"\tNúmero de vacunas inyectadas= " + getNum_vac_inyect();
+        return "Nombre= " + getNombre() + "\tApellidos= " + getApellidos() + "\tDNI= " + getDni() + "\tEdad= " + getEdad() + "\tRiesgo= " + getRiesgo() +"\tVacuna= "+getNombrevac()+"\tNúmero de vacunas inyectadas= " + getNum_vac_inyect();
 
     }
 }

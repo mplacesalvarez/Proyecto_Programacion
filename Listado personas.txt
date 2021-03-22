@@ -1,0 +1,19 @@
+Nombre= Ramon	Apellidos= Perez	DNI= 34760934I	Edad= 25	Riesgo= No	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Pablo	Apellidos= Alvarez	DNI= 43796750J	Edad= 78	Riesgo= Si	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Raul	Apellidos= Fernandez	DNI= 23476548P	Edad= 29	Riesgo= No	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Paula	Apellidos= Barreiro	DNI= 39846129O	Edad= 20	Riesgo= No	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Martin	Apellidos= Lopez	DNI= 20974567J	Edad= 18	Riesgo= No	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Martin	Apellidos= Lopez	DNI= 29745678J	Edad= 18	Riesgo= No	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Marta	Apellidos= Dominguez	DNI= 19467839P	Edad= 39	Riesgo= No	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Maria	Apellidos= Barreiro	DNI= 19736459S	Edad= 45	Riesgo= No	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Carmen	Apellidos= Martinez	DNI= 73928347H	Edad= 29	Riesgo= No	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
+
+Nombre= Marcos	Apellidos= Alvarez	DNI= 40948574H	Edad= 72	Riesgo= NO	Vacuna= No hay vacunas	Número de vacunas inyectadas= 0
