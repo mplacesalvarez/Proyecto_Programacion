@@ -264,13 +264,12 @@ if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");re
 
                             for(int i=0; i<palabras.length; i++){
                                 if(nombre.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
-
+                                    System.out.println("\n");
                             }
 
+                        }
 
-
-
-                        }}if(cont==0){metobx.mensaje4();}
+                        }if(cont==0){metobx.mensaje4();}
 
                         sc.close();
 
@@ -278,7 +277,7 @@ if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");re
                         e.printStackTrace();
                     }
 
-                    System.out.println("\n");
+
                     break;
 
                 case 2:
@@ -297,13 +296,17 @@ if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");re
 
                             for(int i=0; i<palabras.length; i++){
                                 if(apellidos.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
-
+                                    System.out.println("\n");
                                 }
 
 
 
 
-                            }}if(cont==0){metobx.mensaje5();}
+                            }
+
+
+
+                        }if(cont==0){metobx.mensaje5();}
 
 
                         sc.close();
@@ -312,7 +315,7 @@ if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");re
                         e.printStackTrace();
                     }
 
-                    System.out.println("\n");
+
                     break;
 
 
@@ -338,13 +341,15 @@ if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");re
 
                             for(int i=0; i<palabras.length; i++){
                                 if(dni.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
-
+                                    System.out.println("\n");
                                 }
 
 
 
 
-                            }}if(cont==0){metobx.mensaje6();}
+                            }
+
+                        }if(cont==0){metobx.mensaje6();}
 
 
                         sc.close();
@@ -353,7 +358,7 @@ if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");re
                         e.printStackTrace();
                     }
 
-                    System.out.println("\n");
+
                     break;
 
             }
