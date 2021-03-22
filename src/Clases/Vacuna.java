@@ -8,8 +8,6 @@ package Clases;
  */
 
 
-
-
 public class Vacuna {
     private String nombre;
     private int num_dosis;

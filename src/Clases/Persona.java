@@ -23,7 +23,7 @@ public class Persona {
         this.dni = dni;
         this.edad = edad;
         this.riesgo = riesgo;
-        this.nombrevac=nombrevac;
+        this.nombrevac = nombrevac;
     }
 
     public int getEdad() {
@@ -92,7 +92,7 @@ public class Persona {
 
     public String toString() {
 
-        return "Nombre= " + getNombre() + " \tApellidos= " + getApellidos() + " \tDNI= " + getDni() + " \tEdad= " + getEdad() + " \tRiesgo= " + getRiesgo() +" \tVacuna= "+getNombrevac()+" \tNúmero de vacunas inyectadas= " + getNum_vac_inyect();
+        return "Nombre= " + getNombre() + " \tApellidos= " + getApellidos() + " \tDNI= " + getDni() + " \tEdad= " + getEdad() + " \tRiesgo= " + getRiesgo() + " \tVacuna= " + getNombrevac() + " \tNúmero de vacunas inyectadas= " + getNum_vac_inyect();
 
     }
 }
