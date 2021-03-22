@@ -21,32 +21,11 @@ public class Metodos {
 
     Scanner sc;
 
-    {
-
-    }
-
     File listper = new File("Listado personas.txt");
-    FileWriter wrtp;
 
-    {
-        try {
-            wrtp = new FileWriter(listper, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     File listvac = new File("Listado vacunas.txt");
-    FileWriter wrtv;
 
-    {
-        try {
-            wrtv = new FileWriter(listvac, true);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     metodos_print metobx = new metodos_print();
     ArrayList<Persona> listapersonas = new ArrayList<Persona>();
@@ -60,6 +39,7 @@ public class Metodos {
      * Método que crea el menu de la aplicacón
      */
     public void menu() {
+
         try {
             opcionmenu = Integer.parseInt(JOptionPane.showInputDialog(metobx.mensaje()));
 
@@ -100,14 +80,53 @@ public class Metodos {
         setDni(JOptionPane.showInputDialog("DNI: "));
         setEdad(Integer.parseInt(JOptionPane.showInputDialog("Edad: ")));
         setRiesgo(JOptionPane.showInputDialog("¿Es persona de riesgo (Si/No)?: "));
-        int numero = (int) (Math.random() * listavacunas.size());
-        String nombre_vac="" ;
 
-        /**try {
-            nombre_vac = listavacunas.get(numero).getNombre();
-        } catch (IndexOutOfBoundsException ex) {
-        }*/
-        if (listvac.length()==0){nombre_vac = "No hay vacunas";}
+        String nombre_vac= " ";
+
+
+
+       if (listvac.length()==0){nombre_vac = "No hay vacunas";}else{
+
+            try {
+
+                String[] palabras;
+                sc = new Scanner(new File("Listado vacunas.txt"));
+                ArrayList <String> nombre_vacunas=new ArrayList<String>();
+
+                while(sc.hasNextLine()){
+                    String s= sc.nextLine();
+                    palabras= s.split(" ");
+
+
+
+
+                    try {
+
+                      nombre_vacunas.add(palabras[1]);
+
+                    } catch (IndexOutOfBoundsException ex) {
+                    }
+
+
+                }
+                int numero = (int) (Math.random() * nombre_vacunas.size());
+
+                 try {
+                 nombre_vac = nombre_vacunas.get(numero);
+                 } catch (IndexOutOfBoundsException ex) {
+                 }
+
+
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+        }
 
 
 
@@ -116,14 +135,23 @@ public class Metodos {
         Persona obx = new Persona(nombre, apellidos, dni, edad, riesgo, nombre_vac);
 
         listapersonas.add(obx);
+        FileWriter wrtp = null;
+
+        {
+            try {
+                wrtp = new FileWriter(listper, true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         try {
+
             wrtp.write("\n" + obx.toString());
             wrtp.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }//Cierre del método
+        System.out.println("\n");}//Cierre del método
 
     /**
      * Método que añade vacunas a la lista
@@ -136,6 +164,16 @@ public class Metodos {
         obx.setNum_dosis(Integer.parseInt(JOptionPane.showInputDialog("Número de dosis necesarias: ")));
 
         listavacunas.add(obx);
+        FileWriter wrtv=null;
+
+        {
+            try {
+                wrtv = new FileWriter(listvac, true);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         try {
             wrtv.write(obx.toString());
             wrtv.close();
@@ -143,7 +181,7 @@ public class Metodos {
             e.printStackTrace();
         }
 
-    }//Cierre del método
+        System.out.println("\n");}//Cierre del método
 
     /**
      * Método que visualiza la lista de personas
@@ -151,9 +189,7 @@ public class Metodos {
     public void listado() {
 
         System.out.println("**** PERSONAS EN LA LISTA ****");
-        /**  for (int i = 0; i < listapersonas.size(); i++) {
-         System.out.println(listapersonas.get(i).toString());
-         */
+
         try {
             sc = new Scanner(new File("Listado personas.txt"));
 
@@ -170,64 +206,123 @@ public class Metodos {
             System.out.println("No hay personas en la lista.");
         }
 
-
+        System.out.println("\n");
     }
-    /**  if (listapersonas.isEmpty()) {
-     metobx.mensaje2();
-     }
 
-     }//Cierre del método*/
-
-    /**
-     * Método que visualiza a una personas determinada
-     */
     public void buscar() {
-        if (listapersonas.isEmpty()) {
+        if (listper.length()==0) {
             metobx.mensaje3();
             metobx.mensaje2();
         } else {
             int option = Integer.parseInt(JOptionPane.showInputDialog("Elija un criterio de busqueda: \n1) Nombre.\n2) Apellidos.\n3) DNI."));
             switch (option) {
                 case 1:
-                    String nombre = JOptionPane.showInputDialog("Nombre: ");
-                    metobx.mensaje3();
-                    for (int i = 0; i < listapersonas.size(); i++) {
-                        if (listapersonas.get(i).getNombre().equalsIgnoreCase(nombre)) {
+                   String nombre = JOptionPane.showInputDialog("Nombre: ");
+                   metobx.mensaje3();
 
-                            System.out.println(listapersonas.get(i).toString());
-                        } else {
-                            metobx.mensaje4();
-                        }
+                    
+                    try {
+                        sc = new Scanner(new File("Listado personas.txt"));
+                        String[] palabras;
 
+                        int cont=0;
+                        while (sc.hasNextLine()) {
+                            String s = sc.nextLine();
+
+                            palabras = s.split(" ");
+
+                            for(int i=0; i<palabras.length; i++){
+                                if(nombre.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
+
+                            }
+
+
+
+
+                        }}if(cont==0){metobx.mensaje4();}
+
+                        sc.close();
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
+
+                    System.out.println("\n");
                     break;
 
                 case 2:
                     String apellidos = JOptionPane.showInputDialog("Apellidos: ");
+
                     metobx.mensaje3();
 
-                    for (int i = 0; i < listapersonas.size(); i++) {
-                        if (listapersonas.get(i).getApellidos().equalsIgnoreCase(apellidos)) {
+                    try {
+                        sc = new Scanner(new File("Listado personas.txt"));
+                        String[] palabras;
+                        int cont=0;
+                        while (sc.hasNextLine()) {
+                            String s = sc.nextLine();
+
+                            palabras = s.split(" ");
+
+                            for(int i=0; i<palabras.length; i++){
+                                if(apellidos.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
+
+                                }
 
 
-                            System.out.println(listapersonas.get(i).toString());
-                        } else {
-                            metobx.mensaje5();
-                        }
+
+
+                            }}if(cont==0){metobx.mensaje5();}
+
+
+                        sc.close();
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
+
+                    System.out.println("\n");
                     break;
+
+
 
                 case 3:
                     String dni = JOptionPane.showInputDialog("DNI: ");
-                    metobx.mensaje3();
-                    for (int i = 0; i < listapersonas.size(); i++) {
-                        if (listapersonas.get(i).getDni().equalsIgnoreCase(dni)) {
 
-                            System.out.println(listapersonas.get(i).toString());
-                        } else {
-                            metobx.mensaje6();
-                        }
+                    metobx.mensaje3();
+
+
+
+
+
+
+                    try {
+                        sc = new Scanner(new File("Listado personas.txt"));
+                        String[] palabras;
+                        int cont=0;
+                        while (sc.hasNextLine()) {
+                            String s = sc.nextLine();
+
+                            palabras = s.split(" ");
+
+                            for(int i=0; i<palabras.length; i++){
+                                if(dni.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
+
+                                }
+
+
+
+
+                            }}if(cont==0){metobx.mensaje6();}
+
+
+                        sc.close();
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
+
+                    System.out.println("\n");
                     break;
 
             }
@@ -235,26 +330,8 @@ public class Metodos {
     }//Cierre del método
 
 
-    public void primerasvacunas() {
-        Vacuna obx1 = new Vacuna("Pfizer", 2, 100000, 20000);
-        Vacuna obx2 = new Vacuna("Moderna", 2, 100000, 10000);
-        Vacuna obx3 = new Vacuna("AstraZeneca/Oxford", 2, 100000, 50000);
-        listavacunas.add(obx1);
-        listavacunas.add(obx2);
-        listavacunas.add(obx3);
-
-        try {
-            wrtv.write(obx1.toString() + "\n");
-            wrtv.write(obx2.toString() + "\n");
-            wrtv.write(obx3.toString() + "\n");
-            wrtv.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
-    }
 
     /**
      * Método que visualiza la lista de vacunas
@@ -286,8 +363,7 @@ public class Metodos {
             System.out.println("No hay vacunas en la lista.");
         }
 
-        //if(listavacunas.isEmpty()){System.out.println("No hay vacunas en la lista.");}
-
+        System.out.println("\n");
     }//Cierre del método
 
     /**
