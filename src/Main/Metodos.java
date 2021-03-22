@@ -74,12 +74,43 @@ public class Metodos {
      * Método que añade personas a la lista
      */
     public void añadirpersona() {
+        int cont=0;
+
 
         setNombre(JOptionPane.showInputDialog("Nombre: "));
         setApellidos(JOptionPane.showInputDialog("Apellidos: "));
         setDni(JOptionPane.showInputDialog("DNI: "));
-        setEdad(Integer.parseInt(JOptionPane.showInputDialog("Edad: ")));
+        String[] palabra;
+        try {
+
+
+            sc = new Scanner(new File("Listado personas.txt"));
+try{
+            while(sc.hasNextLine()){
+                String s= sc.nextLine();
+                palabra= s.split(" ");
+                for(int i=0; i< palabra.length;i++){if(palabra[i].equalsIgnoreCase(dni)){
+                   cont++;
+                }}
+
+        }
+
+    }catch(ArrayIndexOutOfBoundsException ex){}
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");return;}
+
+            setEdad(Integer.parseInt(JOptionPane.showInputDialog("Edad: ")));
         setRiesgo(JOptionPane.showInputDialog("¿Es persona de riesgo (Si/No)?: "));
+
+
+
+
+
 
         String nombre_vac= " ";
 

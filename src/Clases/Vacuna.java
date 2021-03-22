@@ -53,7 +53,7 @@ public class Vacuna {
 
     public String toString() {
 
-        return "\nNombre= " + getNombre() + " \tNúmero de dosis disponibles= " + getDisponibles() + " \tNúmero de dosis necesarias= " + getNum_dosis();
+        return "Nombre= " + getNombre() + " \tNúmero de dosis disponibles= " + getDisponibles() + " \tNúmero de dosis necesarias= " + getNum_dosis();
 
     }
 }
