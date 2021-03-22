@@ -13,7 +13,6 @@ public class Persona {
     private String nombre, apellidos, dni;
     private String nombrevac;
 
-
     public Persona() {
     }
 
