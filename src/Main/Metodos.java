@@ -128,9 +128,6 @@ if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");re
                     String s= sc.nextLine();
                     palabras= s.split(" ");
 
-
-
-
                     try {
 
                       nombre_vacunas.add(palabras[1]);
