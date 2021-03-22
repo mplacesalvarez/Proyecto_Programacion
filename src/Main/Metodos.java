@@ -74,7 +74,7 @@ public class Metodos {
      * Método que añade personas a la lista
      */
     public void añadirpersona() {
-        int cont = 0;
+        int cont=0;
 
 
         setNombre(JOptionPane.showInputDialog("Nombre: "));
@@ -85,56 +85,52 @@ public class Metodos {
 
 
             sc = new Scanner(new File("Listado personas.txt"));
-            try {
-                while (sc.hasNextLine()) {
-                    String s = sc.nextLine();
-                    palabra = s.split(" ");
-                    for (int i = 0; i < palabra.length; i++) {
-                        if (palabra[i].equalsIgnoreCase(dni)) {
-                            cont++;
-                        }
-                    }
+try{
+            while(sc.hasNextLine()){
+                String s= sc.nextLine();
+                palabra= s.split(" ");
+                for(int i=0; i< palabra.length;i++){if(palabra[i].equalsIgnoreCase(dni)){
+                   cont++;
+                }}
 
-                }
+        }
 
-            } catch (ArrayIndexOutOfBoundsException ex) {
-            }
+    }catch(ArrayIndexOutOfBoundsException ex){}
 
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        if (cont != 0) {
-            System.out.println("Ya hay una persona en la lista con ese DNI.");
-            return;
-        }
+if(cont!=0){System.out.println("Ya hay una persona en la lista con ese DNI.");return;}
 
-        setEdad(Integer.parseInt(JOptionPane.showInputDialog("Edad: ")));
+            setEdad(Integer.parseInt(JOptionPane.showInputDialog("Edad: ")));
         setRiesgo(JOptionPane.showInputDialog("¿Es persona de riesgo (Si/No)?: "));
 
 
-        String nombre_vac = " ";
 
 
-        if (listvac.length() == 0) {
-            nombre_vac = "No hay vacunas";
-        } else {
+
+
+        String nombre_vac= " ";
+
+
+
+       if (listvac.length()==0){nombre_vac = "No hay vacunas";}else{
 
             try {
 
                 String[] palabras;
                 sc = new Scanner(new File("Listado vacunas.txt"));
-                ArrayList<String> nombre_vacunas = new ArrayList<String>();
+                ArrayList <String> nombre_vacunas=new ArrayList<String>();
 
-                while (sc.hasNextLine()) {
-                    String s = sc.nextLine();
-                    palabras = s.split(" ");
-
+                while(sc.hasNextLine()){
+                    String s= sc.nextLine();
+                    palabras= s.split(" ");
 
                     try {
 
-                        nombre_vacunas.add(palabras[1]);
+                      nombre_vacunas.add(palabras[1]);
 
                     } catch (IndexOutOfBoundsException ex) {
                     }
@@ -143,10 +139,12 @@ public class Metodos {
                 }
                 int numero = (int) (Math.random() * nombre_vacunas.size());
 
-                try {
-                    nombre_vac = nombre_vacunas.get(numero);
-                } catch (IndexOutOfBoundsException ex) {
-                }
+                 try {
+                 nombre_vac = nombre_vacunas.get(numero);
+                 } catch (IndexOutOfBoundsException ex) {
+                 }
+
+
 
 
             } catch (FileNotFoundException e) {
@@ -154,7 +152,12 @@ public class Metodos {
             }
 
 
+
+
         }
+
+
+
 
 
         Persona obx = new Persona(nombre, apellidos, dni, edad, riesgo, nombre_vac);
@@ -176,8 +179,7 @@ public class Metodos {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("\n");
-    }//Cierre del método
+        System.out.println("\n");}//Cierre del método
 
     /**
      * Método que añade vacunas a la lista
@@ -190,7 +192,7 @@ public class Metodos {
         obx.setNum_dosis(Integer.parseInt(JOptionPane.showInputDialog("Número de dosis necesarias: ")));
 
         listavacunas.add(obx);
-        FileWriter wrtv = null;
+        FileWriter wrtv=null;
 
         {
             try {
@@ -207,8 +209,7 @@ public class Metodos {
             e.printStackTrace();
         }
 
-        System.out.println("\n");
-    }//Cierre del método
+        System.out.println("\n");}//Cierre del método
 
     /**
      * Método que visualiza la lista de personas
@@ -237,42 +238,35 @@ public class Metodos {
     }
 
     public void buscar() {
-        if (listper.length() == 0) {
+        if (listper.length()==0) {
             metobx.mensaje3();
             metobx.mensaje2();
         } else {
             int option = Integer.parseInt(JOptionPane.showInputDialog("Elija un criterio de busqueda: \n1) Nombre.\n2) Apellidos.\n3) DNI."));
             switch (option) {
                 case 1:
-                    String nombre = JOptionPane.showInputDialog("Nombre: ");
-                    metobx.mensaje3();
+                   String nombre = JOptionPane.showInputDialog("Nombre: ");
+                   metobx.mensaje3();
 
-
+                    
                     try {
                         sc = new Scanner(new File("Listado personas.txt"));
                         String[] palabras;
 
-                        int cont = 0;
+                        int cont=0;
                         while (sc.hasNextLine()) {
                             String s = sc.nextLine();
 
                             palabras = s.split(" ");
 
-                            for (int i = 0; i < palabras.length; i++) {
-                                if (nombre.equalsIgnoreCase(palabras[i])) {
-                                    for (i = 0; i < palabras.length; i++) {
-                                        System.out.print(palabras[i] + " ");
-                                        cont++;
-                                    }
+                            for(int i=0; i<palabras.length; i++){
+                                if(nombre.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
                                     System.out.println("\n");
-                                }
-
                             }
 
                         }
-                        if (cont == 0) {
-                            metobx.mensaje4();
-                        }
+
+                        }if(cont==0){metobx.mensaje4();}
 
                         sc.close();
 
@@ -291,29 +285,25 @@ public class Metodos {
                     try {
                         sc = new Scanner(new File("Listado personas.txt"));
                         String[] palabras;
-                        int cont = 0;
+                        int cont=0;
                         while (sc.hasNextLine()) {
                             String s = sc.nextLine();
 
                             palabras = s.split(" ");
 
-                            for (int i = 0; i < palabras.length; i++) {
-                                if (apellidos.equalsIgnoreCase(palabras[i])) {
-                                    for (i = 0; i < palabras.length; i++) {
-                                        System.out.print(palabras[i] + " ");
-                                        cont++;
-                                    }
+                            for(int i=0; i<palabras.length; i++){
+                                if(apellidos.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
                                     System.out.println("\n");
                                 }
+
+
 
 
                             }
 
 
-                        }
-                        if (cont == 0) {
-                            metobx.mensaje5();
-                        }
+
+                        }if(cont==0){metobx.mensaje5();}
 
 
                         sc.close();
@@ -326,37 +316,37 @@ public class Metodos {
                     break;
 
 
+
                 case 3:
                     String dni = JOptionPane.showInputDialog("DNI: ");
 
                     metobx.mensaje3();
 
 
+
+
+
+
                     try {
                         sc = new Scanner(new File("Listado personas.txt"));
                         String[] palabras;
-                        int cont = 0;
+                        int cont=0;
                         while (sc.hasNextLine()) {
                             String s = sc.nextLine();
 
                             palabras = s.split(" ");
 
-                            for (int i = 0; i < palabras.length; i++) {
-                                if (dni.equalsIgnoreCase(palabras[i])) {
-                                    for (i = 0; i < palabras.length; i++) {
-                                        System.out.print(palabras[i] + " ");
-                                        cont++;
-                                    }
+                            for(int i=0; i<palabras.length; i++){
+                                if(dni.equalsIgnoreCase(palabras[i])){for(i=0; i<palabras.length; i++){System.out.print(palabras[i]+" ");cont++;}
                                     System.out.println("\n");
                                 }
 
 
+
+
                             }
 
-                        }
-                        if (cont == 0) {
-                            metobx.mensaje6();
-                        }
+                        }if(cont==0){metobx.mensaje6();}
 
 
                         sc.close();
@@ -371,6 +361,9 @@ public class Metodos {
             }
         }
     }//Cierre del método
+
+
+
 
 
     /**
