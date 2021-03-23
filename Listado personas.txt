@@ -13,3 +13,4 @@ Nombre= Pablo 	Apellidos= Lopez 	DNI= 29485756H 	Edad= 42 	Riesgo= Si 	Vacuna= P
 Nombre= Alberto 	Apellidos= Rodriguez 	DNI= 15437654A 	Edad= 22 	Riesgo= No 	Vacuna= Pfizer 	Número de vacunas inyectadas= 0
 Nombre= Miriam 	Apellidos= Bangueses 	DNI= 29456737H 	Edad= 27 	Riesgo= No 	Vacuna= Pfizer 	Número de vacunas inyectadas= 0
 Nombre= Raul 	Apellidos= Perez 	DNI= 65938467R 	Edad= 58 	Riesgo= Si 	Vacuna= Moderna 	Número de vacunas inyectadas= 0
+Nombre= Luis 	Apellidos= Gil 	DNI= 32984674K 	Edad= 17 	Riesgo= No 	Vacuna= AstraZeneca/Oxford 	Número de vacunas inyectadas= 0

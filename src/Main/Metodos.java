@@ -412,90 +412,385 @@ public class Metodos {
         switch (option) {
             case 1:
                 String option1 = JOptionPane.showInputDialog("Escriba el DNI de la persona que quiere editar:");
-                for (int i = 0; i < listapersonas.size(); i++) {
-                    if (listapersonas.get(i).getDni().equalsIgnoreCase(option1)) {
+                int cont = 0;
+                try {
+                    String[] palabras;
+                    sc = new Scanner(new File("Listado personas.txt"));
 
-                        int option2 = Integer.parseInt(JOptionPane.showInputDialog("1) Cambiar nombre.\n2) Cambiar apellidos.\n3) Cambiar DNI.\n4) Cambiar edad.\n5) Cambiar riesgo.\n6) Cambiar número de vacunas inyectadas."));
-                        switch (option2) {
 
-                            case 1:
-                                listapersonas.get(i).setNombre(JOptionPane.showInputDialog("Nuevo nombre:"));
-                                metobx.mensaje1();
-                                System.out.println(listapersonas.get(i).toString());
-                                break;
+                    while (sc.hasNextLine()) {
+                        int linea = 0;
 
-                            case 2:
-                                listapersonas.get(i).setApellidos(JOptionPane.showInputDialog("Nuevos apellidos:"));
-                                metobx.mensaje1();
-                                System.out.println(listapersonas.get(i).toString());
-                                break;
-                            case 3:
-                                listapersonas.get(i).setDni(JOptionPane.showInputDialog("Nuevo DNI:"));
-                                metobx.mensaje1();
-                                System.out.println(listapersonas.get(i).toString());
-                                break;
-                            case 4:
-                                listapersonas.get(i).setEdad(Integer.parseInt(JOptionPane.showInputDialog("Nueva edad:")));
-                                metobx.mensaje1();
-                                System.out.println(listapersonas.get(i).toString());
-                                break;
-                            case 5:
-                                listapersonas.get(i).setRiesgo(JOptionPane.showInputDialog("Nuevo riesgo:"));
-                                metobx.mensaje1();
-                                System.out.println(listapersonas.get(i).toString());
-                                break;
-                            case 6:
-                                listapersonas.get(i).setNum_vac_inyect(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de vacunas inyectadas:")));
-                                metobx.mensaje1();
-                                System.out.println(listapersonas.get(i).toString());
-                                break;
+                        String s = sc.nextLine();
+                        linea++;
+                        palabras = s.split(" ");
+                        for (int i = 0; i < palabras.length; i++) {
+                            if (option1.equalsIgnoreCase(palabras[i])) {
+                                cont++;
+                                int option2 = Integer.parseInt(JOptionPane.showInputDialog("1) Cambiar nombre.\n2) Cambiar apellidos.\n3) Cambiar DNI.\n4) Cambiar edad.\n5) Cambiar riesgo.\n6) Cambiar vacuna.\n7) Cambiar número de vacunas inyectadas."));
+                                switch (option2) {
+
+                                    case 1:
+                                        String nuevo_nombre = (JOptionPane.showInputDialog("Nuevo nombre:"));
+                                        palabras[1] = nuevo_nombre;
+                                        FileWriter wrtp = null;
+                                    {
+                                        try {
+                                            wrtp = new FileWriter(listper, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp.write(palabras[i] + " ");
+                                            }
+                                            wrtp.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+
+
+                                    case 2:
+                                        String nuevo_apellidos = (JOptionPane.showInputDialog("Nuevos apellidos:"));
+                                        palabras[3] = nuevo_apellidos;
+                                        FileWriter wrtp1 = null;
+                                    {
+                                        try {
+                                            wrtp1 = new FileWriter(listper, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp1.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp1.write(palabras[i] + " ");
+                                            }
+                                            wrtp1.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+
+                                    case 3:
+                                        String nuevo_dni = (JOptionPane.showInputDialog("Nuevo DNI:"));
+                                        palabras[5] = nuevo_dni;
+                                        FileWriter wrtp2 = null;
+                                    {
+                                        try {
+                                            wrtp2 = new FileWriter(listper, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp2.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp2.write(palabras[i] + " ");
+                                            }
+                                            wrtp2.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+                                    case 4:
+                                        String nuevo_edad = (JOptionPane.showInputDialog("Nueva edad:"));
+                                        palabras[7] = nuevo_edad;
+                                        FileWriter wrtp3 = null;
+                                    {
+                                        try {
+                                            wrtp3 = new FileWriter(listper, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp3.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp3.write(palabras[i] + " ");
+                                            }
+                                            wrtp3.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+                                    case 5:
+                                        String nuevo_riesgo = (JOptionPane.showInputDialog("Nuevo riesgo:"));
+                                        palabras[9] = nuevo_riesgo;
+                                        FileWriter wrtp4 = null;
+                                    {
+                                        try {
+                                            wrtp4 = new FileWriter(listper, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp4.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp4.write(palabras[i] + " ");
+                                            }
+                                            wrtp4.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+                                    case 6:
+                                        String nuevo_vac = (JOptionPane.showInputDialog("Nueva vacuna:"));
+                                        palabras[11] = nuevo_vac;
+                                        FileWriter wrtp5 = null;
+                                    {
+                                        try {
+                                            wrtp5 = new FileWriter(listper, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp5.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp5.write(palabras[i] + " ");
+                                            }
+                                            wrtp5.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+                                    case 7:
+                                        String nuevo_num_vac_inyect = (JOptionPane.showInputDialog("Nuevo número de vacunas inyectadas:"));
+                                        palabras[16] = nuevo_num_vac_inyect;
+                                        FileWriter wrtp6 = null;
+                                    {
+                                        try {
+                                            wrtp6 = new FileWriter(listper, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp6.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp6.write(palabras[i] + " ");
+                                            }
+                                            wrtp6.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+
+                                }
+                            }
                         }
-                    } else {
-                        metobx.mensaje6();
-                        break;
                     }
+                    sc.close();
+
+                    if (cont == 0) {
+                        metobx.mensaje6();
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
+
+
                 break;
 
 
             case 2:
                 String option3 = JOptionPane.showInputDialog("Escriba el nombre de la vacuna que quiere editar:");
-                for (int i = 0; i < listavacunas.size(); i++) {
-                    if (listavacunas.get(i).getNombre().equalsIgnoreCase(option3)) {
+                int cont1 = 0;
+                try {
+                    String[] palabras;
 
-                        int option2 = Integer.parseInt(JOptionPane.showInputDialog("1) Cambiar nombre.\n2) Cambiar número de dosis disponibles.\n3) Cambiar número de dosis necesarias."));
-                        switch (option2) {
+                    sc = new Scanner(new File("Listado vacunas.txt"));
+                    while (sc.hasNextLine()) {
+                        String s = sc.nextLine();
+                        palabras = s.split(" ");
 
-                            case 1:
-                                listavacunas.get(i).setNombre(JOptionPane.showInputDialog("Nuevo nombre:"));
-                                metobx.mensaje1();
-                                System.out.println(listavacunas.get(i).toString());
-                                break;
+                        for (int i = 0; i < palabras.length; i++) {
+                            if (option3.equalsIgnoreCase(palabras[i])) {
+                                cont1++;
+                                int option2 = Integer.parseInt(JOptionPane.showInputDialog("1) Cambiar nombre.\n2) Cambiar número de dosis disponibles.\n3) Cambiar número de dosis necesarias."));
+                                switch (option2) {
 
-                            case 2:
-                                listavacunas.get(i).setDisponibles(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de dosis disponibles:")));
-                                metobx.mensaje1();
-                                System.out.println(listavacunas.get(i).toString());
-                                break;
-                            case 3:
-                                listavacunas.get(i).setNum_dosis(Integer.parseInt(JOptionPane.showInputDialog("Nuevo número de dosis necesarias:")));
-                                metobx.mensaje1();
-                                System.out.println(listavacunas.get(i).toString());
-                                break;
+                                    case 1:
+                                        String nuevo_nombre = JOptionPane.showInputDialog("Nuevo nombre:");
+                                        palabras[1] = nuevo_nombre;
+                                        FileWriter wrtp = null;
+                                    {
+                                        try {
+                                            wrtp = new FileWriter(listvac, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp.write(palabras[i] + " ");
+                                            }
+                                            wrtp.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
 
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+
+                                    case 2:
+                                        String nuevo_dosis_disp = ((JOptionPane.showInputDialog("Nuevo número de dosis disponibles:")));
+                                        palabras[6] = nuevo_dosis_disp;
+                                        FileWriter wrtp1 = null;
+                                    {
+                                        try {
+                                            wrtp1 = new FileWriter(listvac, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp1.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp1.write(palabras[i] + " ");
+                                            }
+                                            wrtp1.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+                                    break;
+                                    case 3:
+                                        String nuevo_dosis_nec = (JOptionPane.showInputDialog("Nuevo número de dosis necesarias:"));
+                                        palabras[11] = nuevo_dosis_nec;
+                                        FileWriter wrtp2 = null;
+                                    {
+                                        try {
+                                            wrtp2 = new FileWriter(listvac, true);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            String editado;
+                                            wrtp2.write("\n");
+                                            for (i = 0; i < palabras.length; i++) {
+                                                wrtp2.write(palabras[i] + " ");
+                                            }
+                                            wrtp2.close();
+                                            metobx.mensaje1();
+                                            for (i = 0; i < palabras.length; i++) {
+
+                                                System.out.print(palabras[i] + " ");
+                                            }
+                                            System.out.println("\n");
+                                            return;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (IndexOutOfBoundsException e) {
+                                        }
+
+                                    }
+
+                                }
+
+                            }
                         }
-
-                    } else {
-                        System.out.println("No hay vacunas en la lista con ese nombre.");
-                        break;
                     }
+                    if (cont1 == 0) {
+                        System.out.println("No hay vacunas en la lista con ese nombre.");
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
-
-
-                ;
                 break;
-
-
         }
 
     }//Cierre del método
