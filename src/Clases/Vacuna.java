@@ -7,7 +7,6 @@ package Clases;
  * @author Manuel Places Alvarez
  */
 
-
 public class Vacuna {
     private String nombre;
     private int num_dosis;
